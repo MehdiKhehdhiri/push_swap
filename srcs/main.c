@@ -1,42 +1,61 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mkhedhir <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 17:19:33 by mkhedhir          #+#    #+#             */
-/*   Updated: 2022/02/25 20:01:58 by mkhedhir         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "../push_swap.h"
 
-#include "../incs/push_swap.h"
-
-t_list	*ft_lstnew(void *content)
+static void	initialize_stack(t_stack **stack, int argc, char **argv)
 {
-	t_list	*list;
+	t_stack	*new;
+	char	**args;
+	int		i;
 
-	list = (t_list *)malloc(sizeof(t_list));
-	if (!list)
-		return (0);
-	list->content = (void *) content;
-	list->next = 0;
-	return (list);
+	i = 0;
+	if (argc == 2)
+		args = ft_split(argv[1], ' ');
+	else
+	{
+		i = 1;
+		args = argv;
+	}
+	while (args[i])
+	{
+		new = ft_stack_lstnew(ft_atoi(args[i]));
+		ft_stack_lstadd_back(stack, new);
+		i++;
+	}
+	indexing_node(stack);
+	if (argc == 2)
+		ft_free(args);
 }
 
-
-int	main(int ac, char av)
+static void	sort_stack(t_stack **stack_a, t_stack **stack_b)
 {
-	int	i;
-	t_pile	*a;
+	if (ft_stack_lstsize(*stack_a) <= 5)
+		simple_sort(stack_a, stack_b);
+	else
+		radix_sort(stack_a, stack_b);
+}
 
-	a = NULL
-	i = 1;
-	while (i <= ac)
+int	main(int argc, char **argv)
+{
+	t_stack	**stack_a;
+	t_stack	**stack_b;
+
+	if (argc < 2)
+		return (-1);
+	ft_check_args(argc, argv);
+	stack_a = (t_stack **)malloc(sizeof(t_stack));
+	stack_b = (t_stack **)malloc(sizeof(t_stack));
+	if (!stack_a || !stack_b)
+		return (-1);
+	*stack_a = NULL;
+	*stack_b = NULL;
+	initialize_stack(stack_a, argc, argv);
+	if (is_sorted(stack_a))
 	{
-		if (ft_isnum(av[i]))
-		{
-			a = ft_lstnew(ft_atoi(av[i]));
-		}	
+		free_stack(stack_a);
+		free_stack(stack_b);
+		return (0);
 	}
+	sort_stack(stack_a, stack_b);
+	free_stack(stack_a);
+	free_stack(stack_b);
+	return (0);
 }
