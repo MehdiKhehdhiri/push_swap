@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkhehdir <mkhehdir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mekhedhi <mekhedhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/20 18:40:17 by mkhehdir          #+#    #+#             */
-/*   Updated: 2024/08/20 18:42:42 by mkhehdir         ###   ########.fr       */
+/*   Created: 2024/08/20 18:40:17 by mekhedhi          #+#    #+#             */
+/*   Updated: 2024/10/19 23:20:51 by mekhedhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void			chunk_split(t_ps *data, t_chunk *to_split, t_split_dest *dest);
 void			innit_size(t_chunk *min, t_chunk *mid, t_chunk *max);
 void			set_split_loc(enum e_loc loc, t_chunk *min, t_chunk *mid,
 					t_chunk *max);
-void			set_third_pivots(enum e_loc loc, int crt_size, int *pivot_1,
-					int *pivot_2);
+void			set_third_pivots(enum e_loc loc, int crt_size, int *p1,
+					int *p2);
 
 // MOVE
 int				move_from_to(t_ps *data, enum e_loc from, enum e_loc to);

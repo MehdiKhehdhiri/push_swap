@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_mngt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkhehdir <mkhehdir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mekhedhi <mekhedhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/20 19:06:50 by mkhehdir          #+#    #+#             */
-/*   Updated: 2024/08/20 19:06:51 by mkhehdir         ###   ########.fr       */
+/*   Created: 2024/08/20 19:06:50 by mekhedhi         #+#    #+#             */
+/*   Updated: 2024/10/19 23:11:37 by mekhedhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_data(t_ps *data, int argc, char **argv, bool writing_mode)
 	--argc;
 	init_stack(data, &data->a, argc);
 	init_stack(data, &data->b, argc);
-	fill_stack(data, &data->a, argc, ++argv);
+	fill_stack(data, &data->a, argc, argv);
 	data->writing_mode = writing_mode;
 	data->op_list = NULL;
 }
@@ -56,7 +56,10 @@ void	error(t_ps *data)
 	ft_putendl_fd("Error", 2);
 	exit(EXIT_FAILURE);
 }
-
+void	del(void *data)
+{
+	free(data);
+}
 void	free_data(t_ps *data)
 {
 	if (data->a.stack)

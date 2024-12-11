@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkhehdir <mkhehdir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mekhedhi <mekhedhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/20 19:05:26 by mkhehdir          #+#    #+#             */
-/*   Updated: 2024/08/20 19:05:26 by mkhehdir         ###   ########.fr       */
+/*   Created: 2024/08/20 19:05:26 by mekhedhi          #+#    #+#             */
+/*   Updated: 2024/10/19 23:21:07 by mekhedhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	set_third_pivots(enum e_loc loc, int crt_size, int *pivot_1, int *pivot_2)
+void	set_third_pivots(enum e_loc loc, int crt_size, int *p1, int *p2)
 {
-	*pivot_2 = crt_size / 3;
+	*p2 = crt_size / 3;
 	if (loc == TOP_A || loc == BOTTOM_A)
-		*pivot_1 = 2 * crt_size / 3;
+		*p1 = 2 * crt_size / 3;
 	if (loc == TOP_B || loc == BOTTOM_B)
-		*pivot_1 = crt_size / 2;
+		*p1 = crt_size / 2;
 	if ((loc == TOP_A || loc == BOTTOM_A) && crt_size < 15)
-		*pivot_1 = crt_size;
+		*p1 = crt_size;
 	if (loc == BOTTOM_B && crt_size < 8)
-		*pivot_2 = crt_size / 2;
+		*p2 = crt_size / 2;
 }
 
 void	chunk_split(t_ps *data, t_chunk *to_split, t_split_dest *dest)
@@ -88,4 +88,3 @@ void	set_split_loc(enum e_loc loc, t_chunk *min, t_chunk *mid, t_chunk *max)
 		max->loc = TOP_A;
 	}
 }
-

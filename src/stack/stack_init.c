@@ -3,30 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkhehdir <mkhehdir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mekhedhi <mekhedhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/20 19:07:57 by mkhehdir          #+#    #+#             */
-/*   Updated: 2024/08/20 19:07:58 by mkhehdir         ###   ########.fr       */
+/*   Created: 2024/08/20 19:07:57 by mekhedhi         #+#    #+#             */
+/*   Updated: 2024/10/19 23:11:37 by mekhedhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-void	fill_stack(t_ps *data, t_stack *stk, int size, char **arg)
+void	fill_stack(t_ps *data, t_stack *stk, int size, char **args)
 {
-	int	*numbers;
-	int	i;
+	int		*numbers;
+	int		i,j;
 
 	numbers = malloc(sizeof(int) * size);
 	if (!numbers)
 		error(data);
 	i = 0;
-	while (arg[i])
+	while (i < size)
 	{
-		if (!valid_arg(arg[i]))
+		if (!valid_arg(args[i]))
+		{
+
+			free(numbers);
 			error(data);
-		numbers[i] = ft_atoi(arg[i]);
+		}
+		numbers[i] = ft_atoi(args[i]);
+
 		i++;
+	}
+	j = 0;
+	while (j < size)
+	{
+		j++;
 	}
 	check_duplication(data, numbers, size);
 	random_to_rank(numbers, stk->stack, size);
